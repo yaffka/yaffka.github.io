@@ -1,0 +1,5 @@
+<div id="About" class="section">
+    <h2>About</h2>
+    <p>Aquí puedes listar tus publicaciones utilizando LaTeX si es necesario.</p>
+    <p>Por ejemplo, una fórmula podría ser: \( E = mc^2 \)</p>
+</div>
