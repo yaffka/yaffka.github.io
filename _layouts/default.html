@@ -9,20 +9,10 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ "/home" | relative_url }}">Home</a></li>
-                <li><a href="{{ "/about" | relative_url }}">About</a></li>
-                <li><a href="{{ "/CV" | relative_url }}">CV</a></li>
-            </ul>
-        </nav>
-    </header>
+    {% include header.html %}
     <main>
         {{ content }}
     </main>
-    <footer>
-        <p>&copy; {{ site.time | date: "%Y" }} - {{ site.title }}</p>
-    </footer>
+    {% include footer.html %}
 </body>
 </html>
