@@ -1,68 +1,74 @@
+/* Reset básico para asegurar una base consistente */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos generales */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
 }
 
+/* Header y navegación */
 header {
-  background: #333;
-  color: #fff;
-  padding: 10px 0;
-  text-align: center;
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
 }
 
-.top-nav {
-  background: #444;
-  color: #fff;
-  padding: 10px 0;
+header nav ul {
+    list-style: none;
+    padding: 0;
 }
 
-.top-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
+header nav ul li {
+    display: inline;
+    margin-right: 10px;
 }
 
-.top-nav ul li {
-  display: inline;
-  margin: 0 15px;
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
 }
 
-.top-nav ul li a {
-  color: #fff;
-  text-decoration: none;
+header nav ul li a:hover {
+    text-decoration: underline;
 }
 
+/* Contenedor principal */
 .container {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    margin: 20px;
 }
 
-.sidebar {
-  width: 20%;
-  position: fixed;
-  top: 60px; /* Ajusta según la altura del header */
-  left: 0;
-  bottom: 0;
-  background: #f4f4f4;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+/* Sección izquierda */
+aside {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    margin-right: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.content {
-  margin-left: 20%;
-  padding: 20px;
-  width: 80%;
+/* Sección principal */
+main {
+    flex: 3;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-footer {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  margin-top: auto;
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    aside {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
 }
 
