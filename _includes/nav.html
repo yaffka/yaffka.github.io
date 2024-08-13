@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{{ page.title }} - {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
-</head>
-<body>
-  {% include nav.html %}
-  <div id="content">
-    {{ content }}
-  </div>
-  {% include footer.html %}
-</body>
-</html>
+<nav>
+  <ul>
+    <li><a href="{{ site.baseurl }}/">Inicio</a></li>
+    <li><a href="{{ site.baseurl }}/about/">Acerca de</a></li>
+    <li><a href="{{ site.baseurl }}/cv/">CV</a></li>
+    <li><a href="{{ site.baseurl }}/other-page/">Otra Página</a></li>
+  </ul>
+</nav>
+
