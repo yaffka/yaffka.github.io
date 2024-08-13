@@ -12,27 +12,43 @@
             margin: 0;
             padding: 0;
             display: flex;
-            height: 100vh;
+            min-height: 100vh;
+            flex-direction: column;
         }
-        .sidebar {
+        .navbar {
             background-color: #333;
             color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .main {
+            display: flex;
+            flex: 1;
+        }
+        .sidebar {
+            background-color: #f4f4f4;
+            color: #333;
             width: 20%;
             padding: 20px;
             box-sizing: border-box;
-        }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            margin: 10px 0;
-        }
-        .sidebar a:hover {
-            background-color: #575757;
-            padding-left: 10px;
+            position: fixed;
+            top: 60px;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
         }
         .content {
             flex: 1;
+            margin-left: 20%;
             padding: 20px;
             box-sizing: border-box;
             overflow-y: auto;
@@ -47,25 +63,38 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Temas</h2>
-        <a href="#tema1">Tema 1</a>
-        <a href="#tema2">Tema 2</a>
-        <a href="#tema3">Tema 3</a>
-        <a href="#tema4">Tema 4</a>
+    <div class="navbar">
+        <a href="#bibliografia">Bibliografía</a>
+        <a href="#publicaciones">Publicaciones</a>
+        <a href="#cv">CV</a>
+        <a href="#cursos">Cursos</a>
     </div>
-    <div class="content">
-        <div id="tema1" class="section">
-            <h2>Tema 1: Matemáticas</h2>
-            <p>Una ecuación cuadrática se puede escribir como \( ax^2 + bx + c = 0 \).</p>
-            <p>La solución de esta ecuación es:</p>
-            \[
-            x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-            \]
+    <div class="main">
+        <div class="sidebar">
+            <h3>Contacto</h3>
+            <p><strong>Email:</strong> tuemail@example.com</p>
+            <p><strong>Teléfono:</strong> +123 456 7890</p>
+            <p><strong>Dirección:</strong> Tu dirección aquí</p>
         </div>
-        <div id="tema2" class="section">
-            <h2>Tema 2</h2>
-            <p>Contenido del Tema 2.</p>
+        <div class="content">
+            <div id="bibliografia" class="section">
+                <h2>Bibliografía</h2>
+                <p>Aquí puedes agregar una descripción de tu biografía personal, tu formación académica, tus intereses de investigación y cualquier otra información que consideres relevante.</p>
+            </div>
+
+            <!-- Incluir otras secciones desde archivos separados -->
+            <div id="publicaciones">
+                <!-- Contenido de publicaciones.html -->
+                <?php include 'publicaciones.html'; ?>
+            </div>
+            <div id="cv">
+                <!-- Contenido de cv.html -->
+                <?php include 'cv.html'; ?>
+            </div>
+            <div id="cursos">
+                <!-- Contenido de cursos.html -->
+                <?php include 'cursos.html'; ?>
+            </div>
         </div>
     </div>
 </body>
