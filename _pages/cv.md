@@ -1,8 +1,10 @@
 ---
-layout: default
+layout: page
 title: CV
+permalink: /cv/
 ---
 
-# Curriculum Vitae
+# Currículum Vitae
 
-Incluye aquí tu currículum vitae o cualquier detalle relacionado con tu experiencia profesional.
+Aquí puedes encontrar mi currículum vitae. [Descargar CV en PDF](link-a-tu-cv-en-pdf)
+

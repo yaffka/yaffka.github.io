@@ -1,8 +1,10 @@
 ---
-layout: default
+layout: page
 title: Home
+permalink: /
 ---
 
 # Bienvenido a mi Página Personal
 
-Aquí encontrarás información sobre mí, mi CV, y otros detalles importantes.
+Aquí puedes encontrar la información principal sobre mí y mis proyectos. Explora las demás páginas para conocer más detalles.
+

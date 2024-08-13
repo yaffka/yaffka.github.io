@@ -1,8 +1,10 @@
 ---
-layout: default
+layout: page
 title: About
+permalink: /about/
 ---
 
-# About
+# Acerca de
 
-Hola a todos $E=mc^{2}$
+Bienvenido a la página de "Acerca de". Aquí puedes encontrar información sobre mí, mis proyectos y más.
+
