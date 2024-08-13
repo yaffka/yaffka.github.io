@@ -4,89 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Página Personal</title>
+    <link rel="stylesheet" href="/path/to/styles.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-            background-color: white; /* Fondo blanco */
-        }
-        .navbar {
-            background-color: #000;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        .navbar a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .navbar a:hover {
-            text-decoration: underline;
-        }
-        .main {
-            display: flex;
-            flex: 1;
-        }
-        .sidebar {
-            background-color: #f4f4f4;
-            color: #333;
-            width: 20%;
-            padding: 20px;
-            box-sizing: border-box;
-            position: fixed;
-            top: 60px;
-            bottom: 0;
-            left: 0;
-            overflow-y: auto;
-        }
-        .content {
-            flex: 1;
-            margin-left: 20%;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        .section h2 {
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="#about">About</a>
-        <a href="#cv">CV</a>
+        <a href="/home/index.html">Home</a>
+        <a href="/about/about.html">About</a>
+        <a href="/CV/CV.html">CV</a>
     </div>
-    <div class="main">
-        <div class="sidebar">
-            <h3>Contacto</h3>
-            <p><strong>Email:</strong> tuemail@example.com</p>
-            <p><strong>Teléfono:</strong> +123 456 7890</p>
-            <p><strong>Dirección:</strong> Tu dirección aquí</p>
-        </div>
-        <div class="content">
-            <div id="about" class="section">
-                <h2>About</h2>
-                <!-- Incluir contenido de about/about.html -->
-                <?php include 'about/about.html'; ?>
-            </div>
-            <div id="cv" class="section">
-                <h2>CV</h2>
-                <!-- Incluir contenido de CV/CV.html -->
-                <?php include 'CV/CV.html'; ?>
-            </div>
-        </div>
+    <div class="content">
+        <h1>Bienvenido a mi página personal</h1>
+        <p>Aquí encontrarás enlaces a las diferentes secciones de mi sitio.</p>
     </div>
 </body>
 </html>
