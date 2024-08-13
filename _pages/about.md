@@ -5,4 +5,4 @@ title: About
 
 # About
 
-Aquí puedes escribir información sobre ti mismo, tus intereses, y tu experiencia.
+Hola a todos $E=mc^{2}$
