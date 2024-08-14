@@ -15,7 +15,7 @@ header nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center; /* Centrar las pestañas horizontalmente */
+    justify-content: center; /* Centrar las pestañas */
 }
 
 header nav ul li {
@@ -23,7 +23,7 @@ header nav ul li {
 }
 
 header nav ul li:last-child {
-    margin-right: 0; /* Eliminar el margen a la derecha del último elemento */
+    margin-right: 0;
 }
 
 header nav ul li a {
@@ -34,5 +34,41 @@ header nav ul li a {
 
 header nav ul li a:hover {
     text-decoration: underline;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    margin: 60px 20px 20px 20px; /* Margen superior para header fijo */
+}
+
+/* Parte izquierda fija */
+aside {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    margin-right: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Parte derecha móvil */
+main {
+    flex: 3;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin: 60px 10px 10px 10px;
+    }
+
+    aside {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
 }
 
