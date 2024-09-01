@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} - {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
-</head>
-<body>
-  <header>
-    <h1>{{ site.title }}</h1>
-    {% include nav.html %}
-  </header>
-  <div class="container">
-    <aside class="sidebar">
-      <!-- Información complementaria aquí -->
-    </aside>
-    <main class="content">
-
+<header class="header">
+    <div class="header-left">
+        <h1 class="site-title">{{ site.title }}</h1>
+    </div>
+    <nav class="header-right">
+        <ul>
+            <li><a href="{{ "/" | relative_url }}">Home</a></li>
+            <li><a href="{{ "/about" | relative_url }}">About</a></li>
+            <li><a href="{{ "/cv" | relative_url }}">CV</a></li>
+        </ul>
+    </nav>
+</header>
