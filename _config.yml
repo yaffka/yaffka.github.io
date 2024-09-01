@@ -1,6 +1,6 @@
 title: Mi Página Personal
-description: Una breve descripción de mi página personal.
+description: Mi sitio web.
 baseurl: ""
-url: "https://usuario.github.io/mi-pagina-personal"
-theme: minima
+url: "https://usuario.github.io"
+theme: kramdown
 
