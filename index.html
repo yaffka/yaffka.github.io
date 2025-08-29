@@ -20,8 +20,8 @@
     use: "HTML5",
     j2sPath: "j2s",
     script: `
-      load "density.cube";
-      isosurface surface1 cutoff 0.002 "density.cube" map "potential.cube";
+      load "density_cafeina.cube";
+      isosurface surface1 cutoff 0.002 "density_cafeina.cube" map "potential_cafeina.cube";
       color isosurface range -0.05 0.05;
       color $surface1 translucent 0.75;
       center;
