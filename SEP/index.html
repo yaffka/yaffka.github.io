@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title> Isosuperficie</title>
+  <script type="text/javascript" src="JSmol.min.js"></script>
+  <script type="text/javascript" src="Jmol.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<h2>Potencial Electrotático</h2>
+
+<script type="text/javascript">
+  var Info = {
+    width: 800,
+    height: 600,
+    use: "HTML5",
+    j2sPath: "j2s",
+    script: `
+      load "density.cube";
+      isosurface surface1 cutoff 0.002 "density.cube" map "potential.cube";
+      color isosurface range -0.05 0.05;
+      color $surface1 translucent 0.75;
+      center;
+      spin off;
+    `
+  };
+
+  // Genera directamente el visor, sin div previo en blanco
+  var applet = Jmol.getApplet("jsmolApplet", Info);
+  document.write(Jmol.getAppletHtml(applet));
+</script>
+
+</body>
+</html>
