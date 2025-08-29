@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cafeína — Isosuperficie</title>
+  <script type="text/javascript" src="JSmol.min.js"></script>
+  <script type="text/javascript" src="Jmol.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 20px; }
+    #viewer { width: 800px; height: 600px; margin: auto; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+<h2>Cafeína — Isosuperficie coloreada</h2>
+<div id="viewer"></div>
+
+<script type="text/javascript">
+  var Info = {
+    width: 800,
+    height: 600,
+    use: "HTML5",
+    j2sPath: "j2s",   // asegúrate que exista esa carpeta y esté llena
+    script: `
+      load "density.cube";
+      isosurface surface1 cutoff 0.002 "density.cube" map "potential.cube"
+      color isosurface range -0.05 0.05
+      color $surface1 translucent 0.75;
+      center;
+      spin off;
+    `
+  };
+
+  var applet = Jmol.getApplet("jsmolApplet", Info);
+  document.getElementById("viewer").innerHTML = Jmol.getAppletHtml(applet);
+</script>
+
+</body>
+</html>
+
