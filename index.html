@@ -2,21 +2,37 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title> Isosuperficie</title>
+  <title>Isosuperficie</title>
   <script type="text/javascript" src="JSmol.min.js"></script>
   <script type="text/javascript" src="Jmol.js"></script>
   <style>
     body { font-family: sans-serif; text-align: center; margin-top: 20px; }
+    .visor-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* espacio entre visores */
+      margin-top: 20px;
+    }
+    .visor {
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
 <body>
 
-<h2>Potencial Electrotático</h2>
+<h2>Potencial Electrostático</h2>
+
+<div class="visor-row">
+  <div id="visor_cafeina" class="visor"></div>
+  <div id="visor_diclo" class="visor"></div>
+  <div id="visor_h2o" class="visor"></div>
+</div>
 
 <script type="text/javascript">
-  var Info = {
-    width: 800,
-    height: 600,
+  // Info Cafeína
+  var InfoCafeina = {
+    width: 300,
+    height: 300,
     use: "HTML5",
     j2sPath: "j2s",
     script: `
@@ -28,12 +44,45 @@
       spin off;
     `
   };
+  var appletCafeina = Jmol.getApplet("jsmolCafeina", InfoCafeina);
+  document.getElementById("visor_cafeina").innerHTML = Jmol.getAppletHtml(appletCafeina);
 
-  // Genera directamente el visor, sin div previo en blanco
-  var applet = Jmol.getApplet("jsmolApplet", Info);
-  document.write(Jmol.getAppletHtml(applet));
+  // Info Diclorobenceno
+  var InfoDiclo = {
+    width: 300,
+    height: 300,
+    use: "HTML5",
+    j2sPath: "j2s",
+    script: `
+      load "density_diclorobenceno.cube";
+      isosurface surface1 cutoff 0.002 "density_diclorobenceno.cube" map "potential_diclorobenceno.cube";
+      color isosurface range -0.05 0.05;
+      color $surface1 translucent 0.75;
+      center;
+      spin off;
+    `
+  };
+  var appletDiclo = Jmol.getApplet("jsmolDiclo", InfoDiclo);
+  document.getElementById("visor_diclo").innerHTML = Jmol.getAppletHtml(appletDiclo);
+
+  // Info H2O
+  var InfoH2O = {
+    width: 300,
+    height: 300,
+    use: "HTML5",
+    j2sPath: "j2s",
+    script: `
+      load "density_h2o.cube";
+      isosurface surface1 cutoff 0.002 "density_h2o.cube" map "potential_h2o.cube";
+      color isosurface range -0.05 0.05;
+      color $surface1 translucent 0.75;
+      center;
+      spin off;
+    `
+  };
+  var appletH2O = Jmol.getApplet("jsmolH2O", InfoH2O);
+  document.getElementById("visor_h2o").innerHTML = Jmol.getAppletHtml(appletH2O);
 </script>
 
 </body>
 </html>
-
