@@ -2,87 +2,419 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Isosuperficie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isosuperficie - Preguntas Interactivas</title>
   <script type="text/javascript" src="JSmol.min.js"></script>
   <script type="text/javascript" src="Jmol.js"></script>
   <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 20px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+      color: #2c3e50;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    header {
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(120deg, #2c3e50, #4ca1af);
+      color: white;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+    
+    .visualization-section {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+    }
+    
+    .questions-section {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #3498db;
+    }
+    
     .visor-row {
       display: flex;
       justify-content: center;
-      gap: 20px; /* espacio entre visores */
+      flex-wrap: wrap;
+      gap: 20px;
       margin-top: 20px;
     }
+    
+    .visor-container {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 280px;
+      margin-bottom: 20px;
+    }
+    
+    .visor-title {
+      background: #2c3e50;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+    
     .visor {
-      border: 1px solid #ccc;
+      padding: 10px;
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .question {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+    
+    .options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    
+    .option {
+      padding: 12px;
+      background: #ecf0f1;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .option:hover {
+      background: #dfe6e9;
+      transform: translateX(5px);
+    }
+    
+    .selected {
+      background: #3498db;
+      color: white;
+    }
+    
+    .feedback {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      display: none;
+    }
+    
+    .correct {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .incorrect {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-top: 1px solid #e9ecef;
+      flex-wrap: wrap;
+    }
+    
+    .control-btn {
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    
+    .control-btn:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      background: #f8f9fa;
+      border-top: 1px solid #e9ecef;
+    }
+    
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
+  <div class="container">
+    <header>
+      <h1>Isosuperficies e Interacciones Moleculares</h1>
+      <p class="subtitle">Visualización y preguntas sobre potencial electrostático</p>
+    </header>
+    
+    <div class="content">
+      <div class="visualization-section">
+        <h2 class="section-title">
+   <div class="controls">
+      <button class="control-btn" onclick="spinAll('on')">Rotar Todas</button>
+      <button class="control-btn" onclick="spinAll('off')">Detener Todas</button>
+    </div>        
+</h2>
+        <div class="visor-row">
+          <div class="visor-container">
+            <div class="visor-title">Cafeína</div>
+            <div id="visor_cafeina" class="visor"></div>
+          </div>
+          
+          <div class="visor-container">
+            <div class="visor-title">Diclorobenceno</div>
+            <div id="visor_diclo" class="visor"></div>
+          </div>
+          
+          <div class="visor-container">
+            <div class="visor-title">Agua (H₂O)</div>
+            <div id="visor_h2o" class="visor"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="questions-section">
+        <h2 class="section-title">Preguntas sobre Isosuperficies</h2>
+        
+        <div class="question">
+          <div class="question-text">1. Según las visualizaciones, ¿qué molécula muestra la mayor variación en su potencial electrostático?</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, 1, 'Cafeína')">Cafeína</div>
+            <div class="option" onclick="checkAnswer(this, 1, 'Diclorobenceno')">Diclorobenceno</div>
+            <div class="option" onclick="checkAnswer(this, 1, 'Agua')">Agua</div>
+          </div>
+          <div id="feedback1" class="feedback"></div>
+        </div>
+        
+        <div class="question">
+          <div class="question-text">2. Las regiones azules en las isosuperficies representan:</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, 2, 'Potencial electrostático positivo')">Potencial electrostático positivo</div>
+            <div class="option" onclick="checkAnswer(this, 2, 'Potencial electrostático negativo')">Potencial electrostático negativo</div>
+            <div class="option" onclick="checkAnswer(this, 2, 'Regiones de alta densidad electrónica')">Regiones de alta densidad electrónica</div>
+          </div>
+          <div id="feedback2" class="feedback"></div>
+        </div>
+        
+        <div class="question">
+          <div class="question-text">3. ¿Qué tipo de interacciones predominan en las regiones rojas de la cafeína?</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, 3, 'Interacciones hidrofóbicas')">Interacciones hidrofóbicas</div>
+            <div class="option" onclick="checkAnswer(this, 3, 'Interacciones electrostáticas atractivas')">Interacciones electrostáticas atractivas</div>
+            <div class="option" onclick="checkAnswer(this, 3, 'Enlaces de hidrógeno')">Enlaces de hidrógeno</div>
+          </div>
+          <div id="feedback3" class="feedback"></div>
+        </div>
+        
+        <div class="question">
+          <div class="question-text">4. ¿Qué molécula presentaría mayor solubilidad en agua basándote en su potencial electrostático?</div>
+          <div class="options">
+            <div class="option" onclick="checkAnswer(this, 4, 'Cafeína')">Cafeína</div>
+            <div class="option" onclick="checkAnswer(this, 4, 'Diclorobenceno')">Diclorobenceno</div>
+            <div class="option" onclick="checkAnswer(this, 4, 'Agua')">Agua</div>
+          </div>
+          <div id="feedback4" class="feedback"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button class="control-btn" onclick="showAnswers()">Mostrar Respuestas</button>
+    </div>
+    
+    <footer>
+      <p>Yaffet Zambrano</p>
+    </footer>
+  </div>
 
-<h2>Potencial Electrostático</h2>
+  <script type="text/javascript">
+    // Variables globales para los applets
+    let appletCafeina, appletDiclo, appletH2O;
+    
+    // Esperar a que la página cargue completamente
+    window.onload = function() {
+      // Info Cafeína
+      var InfoCafeina = {
+        width: 250,
+        height: 250,
+        use: "HTML5",
+        j2sPath: "j2s",
+        script: `
+          load "density_cafeina.cube";
+          isosurface surface1 cutoff 0.002 "density_cafeina.cube" map "potential_cafeina.cube";
+          color isosurface range -0.04 0.04;
+          color $surface1 translucent 0.75;
+          center;
+          spin off;
+        `
+      };
+      appletCafeina = Jmol.getApplet("jsmolCafeina", InfoCafeina);
+      document.getElementById("visor_cafeina").innerHTML = Jmol.getAppletHtml(appletCafeina);
 
-<div class="visor-row">
-  <div id="visor_cafeina" class="visor"></div>
-  <div id="visor_diclo" class="visor"></div>
-  <div id="visor_h2o" class="visor"></div>
-</div>
+      // Info Diclorobenceno
+      var InfoDiclo = {
+        width: 250,
+        height: 250,
+        use: "HTML5",
+        j2sPath: "j2s",
+        script: `
+          load "density_diclorobenceno.cube";
+          isosurface surface1 cutoff 0.002 "density_diclorobenceno.cube" map "potential_diclorobenceno.cube";
+          color isosurface range -0.02 0.02;
+          color $surface1 translucent 0.75;
+          center;
+          spin off;
+        `
+      };
+      appletDiclo = Jmol.getApplet("jsmolDiclo", InfoDiclo);
+      document.getElementById("visor_diclo").innerHTML = Jmol.getAppletHtml(appletDiclo);
 
-<script type="text/javascript">
-  // Info Cafeína
-  var InfoCafeina = {
-    width: 300,
-    height: 300,
-    use: "HTML5",
-    j2sPath: "j2s",
-    script: `
-      load "density_cafeina.cube";
-      isosurface surface1 cutoff 0.002 "density_cafeina.cube" map "potential_cafeina.cube";
-      color isosurface range -0.05 0.05;
-      color $surface1 translucent 0.75;
-      center;
-      spin off;
-    `
-  };
-  var appletCafeina = Jmol.getApplet("jsmolCafeina", InfoCafeina);
-  document.getElementById("visor_cafeina").innerHTML = Jmol.getAppletHtml(appletCafeina);
-
-  // Info Diclorobenceno
-  var InfoDiclo = {
-    width: 300,
-    height: 300,
-    use: "HTML5",
-    j2sPath: "j2s",
-    script: `
-      load "density_diclorobenceno.cube";
-      isosurface surface1 cutoff 0.002 "density_diclorobenceno.cube" map "potential_diclorobenceno.cube";
-      color isosurface range -0.05 0.05;
-      color $surface1 translucent 0.75;
-      center;
-      spin off;
-    `
-  };
-  var appletDiclo = Jmol.getApplet("jsmolDiclo", InfoDiclo);
-  document.getElementById("visor_diclo").innerHTML = Jmol.getAppletHtml(appletDiclo);
-
-  // Info H2O
-  var InfoH2O = {
-    width: 300,
-    height: 300,
-    use: "HTML5",
-    j2sPath: "j2s",
-    script: `
-      load "density_h2o.cube";
-      isosurface surface1 cutoff 0.002 "density_h2o.cube" map "potential_h2o.cube";
-      color isosurface range -0.05 0.05;
-      color $surface1 translucent 0.75;
-      center;
-      spin off;
-    `
-  };
-  var appletH2O = Jmol.getApplet("jsmolH2O", InfoH2O);
-  document.getElementById("visor_h2o").innerHTML = Jmol.getAppletHtml(appletH2O);
-</script>
-
+      // Info H2O
+      var InfoH2O = {
+        width: 250,
+        height: 250,
+        use: "HTML5",
+        j2sPath: "j2s",
+        script: `
+          load "density_h2o.cube";
+          isosurface surface1 cutoff 0.002 "density_h2o.cube" map "potential_h2o.cube";
+          color isosurface range -0.04 0.04;
+          color $surface1 translucent 0.75;
+          center;
+          spin off;
+        `
+      };
+      appletH2O = Jmol.getApplet("jsmolH2O", InfoH2O);
+      document.getElementById("visor_h2o").innerHTML = Jmol.getAppletHtml(appletH2O);
+    };
+    
+    // Funciones de control para todas las visualizaciones
+    function spinAll(state) {
+      Jmol.script(appletCafeina, `spin ${state}`);
+      Jmol.script(appletDiclo, `spin ${state}`);
+      Jmol.script(appletH2O, `spin ${state}`);
+    }
+    
+    function resetAll() {
+      Jmol.script(appletCafeina, 'reset;');
+      Jmol.script(appletDiclo, 'reset;');
+      Jmol.script(appletH2O, 'reset;');
+    }
+    
+    // Respuestas correctas
+    const correctAnswers = {
+      1: "Cafeína",
+      2: "Potencial electrostático positivo",
+      3: "Interacciones electrostáticas atractivas",
+      4: "Cafeína"
+    };
+    
+    // Explicaciones de las respuestas
+    const explanations = {
+      1: "La cafeína muestra la mayor variación de potencial electrostático, con regiones muy positivas (azules) y muy negativas (rojas).",
+      2: "Las regiones azules representan potencial electrostático positivo, que atrae especies cargadas negativamente.",
+      3: "Las regiones rojas indican potencial electrostático negativo, que favorece interacciones electrostáticas atractivas con especies positivas.",
+      4: "La cafeína presenta regiones con cargas positivas y negativas, lo que le permite formar puentes de hidrógeno con el agua."
+    };
+    
+    // Verificar respuesta
+    function checkAnswer(element, questionId, selectedAnswer) {
+      // Remover selección previa
+      const options = element.parentElement.querySelectorAll('.option');
+      options.forEach(opt => opt.classList.remove('selected'));
+      
+      // Marcar selección actual
+      element.classList.add('selected');
+      
+      const feedback = document.getElementById(`feedback${questionId}`);
+      feedback.style.display = 'block';
+      
+      if (selectedAnswer === correctAnswers[questionId]) {
+        feedback.textContent = "¡Correcto! " + explanations[questionId];
+        feedback.className = "feedback correct";
+      } else {
+        feedback.textContent = "Incorrecto. La respuesta correcta es: " + correctAnswers[questionId] + ". " + explanations[questionId];
+        feedback.className = "feedback incorrect";
+      }
+    }
+    
+    // Mostrar todas las respuestas
+    function showAnswers() {
+      for (let i = 1; i <= 4; i++) {
+        const feedback = document.getElementById(`feedback${i}`);
+        feedback.textContent = "Respuesta correcta: " + correctAnswers[i] + ". " + explanations[i];
+        feedback.className = "feedback correct";
+        feedback.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
